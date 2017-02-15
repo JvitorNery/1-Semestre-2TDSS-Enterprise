@@ -15,6 +15,8 @@ public class Teste {
 		
 		EntityManager em = fabrica.createEntityManager();
 		
+		
+		
 	}
 	
 }
