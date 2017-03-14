@@ -2,6 +2,7 @@ package br.com.fiap.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name="TB_PROJETO_AM")
@@ -39,7 +42,8 @@ public class ProjetoAm {
 	@Column(name="DS_OBSERVACAO")
 	private String observacoes;
 	
-	@OneToOne
+	//cascade -> replica a ação da entidade no relacionamento
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="FK_CD_GRUPO")
 	private GrupoAm grupo;
 

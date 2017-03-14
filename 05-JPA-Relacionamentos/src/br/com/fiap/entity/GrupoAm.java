@@ -1,10 +1,15 @@
 package br.com.fiap.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,6 +27,15 @@ public class GrupoAm {
 	
 	@Column(name="NM_GRUPO",nullable=false,length=50)
 	private String nome;
+	
+	//Relacionamento bi-direcional
+	//mappedBy -> nome do atributo que mapeia o relacionamento (na classe ProjetoAm)
+	@OneToOne(mappedBy="grupo",fetch=FetchType.LAZY)
+	private ProjetoAm projeto;
+	
+	//Relacionameto bi-direcional
+	@OneToMany(mappedBy="grupo")
+	private List<Aluno> alunos;
 
 	public GrupoAm() {
 		super();
@@ -47,6 +61,22 @@ public class GrupoAm {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public ProjetoAm getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(ProjetoAm projeto) {
+		this.projeto = projeto;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
 	}
 	
 }
