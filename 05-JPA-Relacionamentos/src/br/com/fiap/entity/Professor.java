@@ -32,6 +32,16 @@ public class Professor {
 	@Temporal(TemporalType.DATE)
 	private Calendar dataAdmissao;
 	
+	public Professor() {
+		super();
+	}
+
+	public Professor(String nome, Calendar dataAdmissao) {
+		super();
+		this.nome = nome;
+		this.dataAdmissao = dataAdmissao;
+	}
+
 	@ManyToMany(mappedBy="professores",cascade=CascadeType.PERSIST)
 	private List<Aluno> alunos;
 
