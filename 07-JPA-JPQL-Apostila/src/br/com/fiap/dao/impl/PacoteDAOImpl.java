@@ -1,5 +1,6 @@
 package br.com.fiap.dao.impl;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,6 +37,15 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 			"from Pacote p where p.transporte = :tr",Pacote.class);
 		query.setParameter("tr", transporte);
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Pacote> buscarPorData(Calendar inicio, Calendar fim) {		
+		return em.createQuery("from Pacote p where p.dataSaida"
+				+ " between :i and :f",Pacote.class)
+				.setParameter("i", inicio)
+				.setParameter("f", fim)
+				.getResultList();
 	}
 
 }

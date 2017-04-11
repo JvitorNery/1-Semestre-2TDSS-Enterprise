@@ -1,5 +1,6 @@
 package br.com.fiap.dao.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,23 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 		query.setParameter("n", numero);
 		query.setMaxResults(50); //Retorna no máximo 50 registros
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Cliente> buscar(String nome, String cidade) {
+		return em.createQuery("from Cliente c where c.nome like "
+			+ ":n and c.endereco.cidade.nome like :c",Cliente.class)
+			.setParameter("n", "%" + nome + "%")
+			.setParameter("c", "%" + cidade + "%")
+			.getResultList();
+	}
+
+	@Override
+	public List<Cliente> buscarPorEstados(Collection<String> estados) {
+		return em.createQuery("from Cliente c where "
+				+ "c.endereco.cidade.uf in :estados",Cliente.class)
+				.setParameter("estados", estados)
+				.getResultList();
 	}
 
 }
