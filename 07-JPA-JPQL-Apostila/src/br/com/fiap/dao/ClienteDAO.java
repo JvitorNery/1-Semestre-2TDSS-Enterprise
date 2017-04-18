@@ -7,6 +7,12 @@ import br.com.fiap.entity.Cliente;
 
 public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 
+	Cliente buscarPorCpf(String cpf);
+	
+	List<Cliente> buscarPorMesAniversario(int mes);
+	
+	long buscarQuantidade();
+	
 	List<Cliente> buscarPorEstado(String estado);
 	
 	List<Cliente> buscarPorDiaReserva(int numero);

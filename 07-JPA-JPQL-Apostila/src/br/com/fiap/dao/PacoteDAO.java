@@ -8,6 +8,12 @@ import br.com.fiap.entity.Transporte;
 
 public interface PacoteDAO extends GenericDAO<Pacote,Integer>{
 
+	long buscarQuantidade(Calendar inicio, Calendar fim);
+	
+	double buscarPrecoMedio();
+	
+	List<Pacote> buscarMaiorPreco();
+	
 	List<Pacote> listar();
 	
 	List<Pacote> buscarPorPreco(float maximo);
