@@ -1,8 +1,8 @@
 package br.com.fiap.bo;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
-@Local
+@Remote
 public interface CursoBO {
 
 	float calcularMedia(float nac, float ps, float am, float enade);
